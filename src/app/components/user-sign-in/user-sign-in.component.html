@@ -1,0 +1,6 @@
+<div>
+  <input type="email" #emailField><br>
+  <input type="password" #passwordField><br>
+  <button class="logIn" (click)="userSignIn(emailField.value, passwordField.value)">Sign in</button>
+  <button class="logOut" (click)="logOut()">Log out</button>
+</div>

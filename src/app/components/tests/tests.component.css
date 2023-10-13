@@ -1,0 +1,36 @@
+h2{
+  color:rgb(49, 49, 170);
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+button{
+  cursor:pointer;
+  background: rgb(153, 255, 233);
+  color: rgb(7, 51, 92);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight:bold;
+  margin-top: 4px;
+  border-color: rgb(51, 37, 20);
+}
+.tests{
+  cursor:pointer;
+  background: rgb(251, 241, 129);
+  color: rgb(35, 89, 140);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight:bold;
+  border-color: bisque;
+}
+.testContainer {
+  width: 25%;
+  display: grid;
+}
+.testBtn {
+  display: inline-block;
+  width: 100%;
+}
+.passingTestContainer{
+  float:left;
+}
