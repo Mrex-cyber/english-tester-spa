@@ -29,7 +29,11 @@ export class ServerConnectionService {
 
   userSignIn(email : string, password: string): Observable<string> {
     this.httpOptions.headers = new HttpHeaders({"Accept": "application/json", "Content-Type": "application/json"});
-    return this.client.post<string>(this.testsUrl + "/signin", {email: email, password: password});
+    return this.client.post<string>(this.testsUrl + "/user/signin", {firstName: null, lastName: null, email: email, password: password});
+  }
+  userRegister(firstName: string, lastName: string, email : string, password: string): Observable<string> {
+    this.httpOptions.headers = new HttpHeaders({"Accept": "application/json", "Content-Type": "application/json"});
+    return this.client.post<string>(this.testsUrl + "/user/signup", {firstName: firstName, lastName: lastName, email: email, password: password});
   }
 
   logOut(){

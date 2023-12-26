@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { PassingTestComponent } from './components/passing-test/passing-test.component';
 
 const routes: Routes = [
-  { path: 'pass', component: PassingTestComponent},
+  { path: 'pass', component: PassingTestComponent },
+  { path: '/', component: AppComponent },
 ]
 
 @NgModule({

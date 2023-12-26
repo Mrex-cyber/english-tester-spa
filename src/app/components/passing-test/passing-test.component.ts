@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { ITest } from 'src/app/models/ITest';
-import { IQuestion} from 'src/app/models/IQuestion';
 import { ServerConnectionService } from 'src/app/services/server-connection.service';
 
 @Component({
@@ -8,41 +7,33 @@ import { ServerConnectionService } from 'src/app/services/server-connection.serv
   templateUrl: './passing-test.component.html',
   styleUrls: ['./passing-test.component.css']
 })
-export class PassingTestComponent implements OnInit {
-   @Input() test: ITest = {
-    id: 0,
-    title: "-1Title",
-    description:"-1Description",
-    questions: [],
-    finished: false,
-    result: 0
-  };
+export class PassingTestComponent {
+  @Input() set test(value: ITest) {
+    if (value){
+      this._test = value;
+    }
+  }
+  get test():ITest{
+    return this._test;
+  }
+  private _test!: ITest;
+
+  @Output() newCurrentResultEvent = new EventEmitter<number>();
+  @ViewChildren('selectedItem') selectedItem: QueryList<ElementRef> | undefined;
 
   constructor(private serverService: ServerConnectionService) { }
 
-  onSubmit(){
-    let answers = document.getElementsByTagName("select");
-
-    const submitButton = document.getElementById("submitBtn");
-    submitButton?.remove();
-
-
-    let answerArray: string[] = [];
-    for (let i = 0; i < answers.length; i++){
-      answerArray.push(answers[i].value ?? "");
-    }
-    for (let i = 0; i < this.test.questions.length; i++){
-      if (answerArray[i] === this.test.questions[i].rightAnswer) {
+  public onSubmit(){
+    const selectedItem: ElementRef[] = this.selectedItem!.toArray();
+    selectedItem.forEach((item:ElementRef, i:number) => {
+      if (item.nativeElement.value === this.test.questions[i].rightAnswer) {
         this.test.result++;
-        console.log("Increment");
       }
-    }
-    console.log(this.test.result);
+    });
+
     this.test.finished = true;
 
+    this.newCurrentResultEvent.emit(this.test.result);
     this.serverService.postTestResultWithId(this.test.id, this.test.result).subscribe();
   }
-  ngOnInit() {
-  }
-
 }

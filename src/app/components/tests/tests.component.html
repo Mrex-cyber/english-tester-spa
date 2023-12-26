@@ -1,13 +1,14 @@
 <h2>Tests</h2>
+<h3>Last test result: {{lastResult}}</h3>
 <button class="tests" (click)="getTests()">Refresh data</button>
 <div class="testContainer">
   <div *ngFor="let test of tests">
     <button [class.selected]="test === selectedTest" type="button" (click)="onSelectTest(test)" class="testBtn">
-      <h2>{{test.title}} ({{test.result}})</h2>
+      <h2>{{test.title}}</h2>
       <p>{{test.description}}</p>
     </button>
   </div>
   <div class="passingTestContainer">
-    <app-passing-test *ngIf="selectedTest" [test]="selectedTest"></app-passing-test>
+    <app-passing-test *ngIf="selectedTest" [test]="selectedTest" (newCurrentResultEvent)="changeTestResult($event)"></app-passing-test>
   </div>
 </div>

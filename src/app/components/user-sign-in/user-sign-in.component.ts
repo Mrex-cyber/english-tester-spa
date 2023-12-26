@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ServerConnectionService } from 'src/app/services/server-connection.service';
 
 @Component({
@@ -6,18 +6,21 @@ import { ServerConnectionService } from 'src/app/services/server-connection.serv
   templateUrl: './user-sign-in.component.html',
   styleUrls: ['./user-sign-in.component.css']
 })
-export class UserSignInComponent implements OnInit {
+export class UserSignInComponent {
+  @Output() changeState: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private serverService: ServerConnectionService) { }
 
   userSignIn(email:string, password: string){
     this.serverService.userSignIn(email, password).subscribe(token => this.serverService.token = token);
   }
-  logOut(){
-    this.serverService.logOut();
+
+  changeToSigningInState(){
+    this.changeState.emit(false);
   }
 
-  ngOnInit() : void {
+  logOut(){
+    this.serverService.logOut();
   }
 
 }

@@ -19,15 +19,11 @@ button{
   position: relative;
 }
 
-.logOut{
-  margin-top: 4px;
-}
-
 .signIn{
+  background-color: gray;
   margin-top: 8px;
 }
 
 .signUp{
-  background-color: gray;
   margin-top: 8px;
 }

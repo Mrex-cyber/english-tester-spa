@@ -1,6 +1,12 @@
-<h1>{{title}}</h1>
+<h1 i18n="@@appTitle">Tester-SPA!</h1>
+<ul>
+  <li *ngFor="let language of languages">
+    <a href="/{{language.code}}">{{language.label}}</a>
+  </li>
+</ul>
 
-<app-user-sign-in></app-user-sign-in>
+<app-user-sign-in *ngIf="signingStateSignIn" (changeState)="changeStateInParent($event)"></app-user-sign-in>
+<app-user-registration *ngIf="!signingStateSignIn" (changeState)="changeStateInParent($event)"></app-user-registration>
 <app-tests></app-tests>
 <router-outlet></router-outlet>
 
