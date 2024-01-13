@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { AppComponent } from './app.component';
-import { PassingTestComponent } from './components/passing-test/passing-test.component';
+import { TestsContainerComponent } from './tests/containers/tests-container/tests-container.component';
+import { BeginnerContainerComponent } from './beginners/containers/beginner-container/beginner-container.component';
+import { BlogsContainerComponent } from './blogs/containers/blogs-container/blogs-container.component';
+import { MainPageComponent } from './main/containers/main-page/main-page.component';
 
 const routes: Routes = [
-  { path: 'pass', component: PassingTestComponent },
-  { path: '/', component: AppComponent },
+  { path: 'main', component: MainPageComponent },
+  { path: 'tests', component: TestsContainerComponent },
+  { path: 'beginners', component: BeginnerContainerComponent },
+  { path: 'blogs', component: BlogsContainerComponent },
+  { path: '', component: MainPageComponent },
 ]
 
 @NgModule({

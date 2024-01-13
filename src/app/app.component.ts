@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserIdentityService } from './services/user-identity.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,14 @@ import { UserIdentityService } from './services/user-identity.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public title = 'TESTER SPA';
-  public signingStateSignIn: boolean = true;
-  public languages = [
-    { code: 'en-US', label: 'English' },
-    { code: 'ua', label: 'Українська' },
-    { code: 'ru', label: 'Русский' }
-  ]
+  n1: number[] = [1, 2, 3];
+  n2: number[] = [4, 5, 6];
 
-  public changeStateInParent(value: boolean){
-    this.signingStateSignIn = value;
+  public firstEvent(values: number[]){
+    this.n1 = values;
   }
 
+  public secondEvent(values: number[]){
+    this.n2 = values;
+  }
 }

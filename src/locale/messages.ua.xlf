@@ -3,8 +3,8 @@
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="appTitle" datatype="html" target-language="ua">
-        <source>Hello!</source>
-        <target>Привіт</target>
+        <source>Tester-SPA!</source>
+        <target>Тестер-SPA!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">1</context>

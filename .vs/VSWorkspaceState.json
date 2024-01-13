@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\services",
+    "\\src\\app\\tests",
+    "\\src\\app\\tests\\components\\passing-test",
+    "\\src\\app\\user-auth",
+    "\\src\\app\\user-auth\\resources"
+  ],
+  "SelectedNode": "\\src\\app\\tests\\components",
+  "PreviewInSolutionExplorer": false
+}
