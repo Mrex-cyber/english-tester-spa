@@ -30,6 +30,7 @@ export class BeginnerContainerComponent implements OnInit, OnDestroy {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
     this.onChangeAuthOptions();
 
     this.getTestsPolling();
@@ -41,8 +42,10 @@ export class BeginnerContainerComponent implements OnInit, OnDestroy {
   }
 
   public changeTestResult(newResult: number){
+
     this.selectedTest!.result = newResult;
     this.lastResult = newResult.toString();
+
   }
 
   public onSelectTest(test: ITest): void {
@@ -55,6 +58,7 @@ export class BeginnerContainerComponent implements OnInit, OnDestroy {
   }
 
   public getTestsPolling(): void {
+
     interval(5000)
       .pipe(
         switchMap(() => this.testsService.getTests()),
@@ -63,9 +67,11 @@ export class BeginnerContainerComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe(tests => this.tests = tests);
+
   };
 
   public onChangeAuthOptions(){
+
     this.userAuthService.authOptions$
       .subscribe(options => {
         this.authOptions = options;
@@ -75,6 +81,7 @@ export class BeginnerContainerComponent implements OnInit, OnDestroy {
             .subscribe(tests => tests.map(test => this.tests.push(test)));
         }
       });
+
   }
 
 }

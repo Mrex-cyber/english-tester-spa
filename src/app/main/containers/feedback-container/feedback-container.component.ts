@@ -16,10 +16,14 @@ export class FeedbackContainerComponent implements OnInit, OnDestroy {
   constructor(private mainPageLoader: MainPageLoaderService) { }
 
   ngOnInit(): void {
-    this.feedbacksSubscription = this.mainPageLoader.getFeedbacks().subscribe(f => this.feedbacks = f);
+    this.subscribeToApi();
   }
 
   ngOnDestroy(): void {
     this.feedbacksSubscription.unsubscribe();
+  }
+
+  private subscribeToApi(){
+    this.feedbacksSubscription = this.mainPageLoader.getFeedbacks().subscribe(f => this.feedbacks = f);
   }
 }

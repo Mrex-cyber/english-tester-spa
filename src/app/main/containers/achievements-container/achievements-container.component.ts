@@ -16,11 +16,14 @@ export class AchievementsContainerComponent implements OnInit, OnDestroy {
   constructor(private mainPageLoader: MainPageLoaderService) { }
 
   ngOnInit() {
-    this.achievementsSubscription = this.mainPageLoader.getAchievements().subscribe(a => this.achievements = a);
+    this.subscribeToApi();
   }
 
   ngOnDestroy (): void {
     this.achievementsSubscription.unsubscribe();
   }
 
+  private subscribeToApi(){
+    this.achievementsSubscription = this.mainPageLoader.getAchievements().subscribe(a => this.achievements = a);
+  }
 }

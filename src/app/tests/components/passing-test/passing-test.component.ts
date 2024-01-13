@@ -21,6 +21,8 @@ export class PassingTestComponent implements OnInit {
 
   public selectedValues: IAnswer[] = [];
 
+  public answers: IAnswer[] = [];
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: ITest,
     private userAuthService: UserAuthResourceService,
@@ -33,10 +35,8 @@ export class PassingTestComponent implements OnInit {
 
     this.onChangeAuthOptions();
 
-    this.selectedValues.length = this.test.questions.length;
+    this.changeSelectedValuesLength();
   }
-
-  public answers: IAnswer[] = [];
 
   public onTestSubmit(){
 
@@ -52,6 +52,10 @@ export class PassingTestComponent implements OnInit {
 
     this.userAuthService.authOptions$
       .subscribe(options => this.authOptions = options);
+  }
+
+  private changeSelectedValuesLength(){
+    this.selectedValues.length = this.test.questions.length;
   }
 
 }
