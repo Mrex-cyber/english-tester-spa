@@ -6,10 +6,10 @@
       <mat-label>Choose your answer</mat-label>
       <mat-select class="list-selector" [(ngModel)]="selectedValues[i]">
         <mat-option *ngFor="let answer of question.answers" [value]="answer">
-          {{answer.text}}
+          {{answer.id}}. {{answer.text}} ({{answer.questionId}})
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <button class="sendBtn" mat-raised-button color="primary" (click)="onTestSubmit()">Send</button>
+  <button class="sendBtn" mat-raised-button color="primary" (click)="submitForm()">Send</button>
 </form>

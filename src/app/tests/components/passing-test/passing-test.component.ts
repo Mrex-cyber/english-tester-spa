@@ -1,61 +1,50 @@
 import { Component, Input, Output, EventEmitter, OnInit, Inject } from '@angular/core';
-import { TestsResourceService } from 'src/app/tests/resources/tests.service';
 import { ITest } from '../../models/ITest';
 import { IAnswer } from '../../models/IAnswer';
-import { UserAuthResourceService } from 'src/app/user-auth/resources/user-auth.service';
-import { ITokenWithEmail } from 'src/app/user-auth/models/ITokenWithEmail';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { UserAuthDialogComponent } from 'src/app/user-auth/dialog-windows/user-auth-dialog/user-auth-dialog.component';
+import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-passing-test',
   templateUrl: './passing-test.component.html',
-  styleUrls: ['./passing-test.component.css']
+  styleUrls: ['./passing-test.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    MatButtonModule,
+    ReactiveFormsModule
+  ]
 })
 export class PassingTestComponent implements OnInit {
   @Input() test!: ITest;
 
-  @Output() newCurrentResultEvent = new EventEmitter<number>();
-
-  public authOptions: ITokenWithEmail = {token: '', email: ''};
-
   public selectedValues: IAnswer[] = [];
 
-  public answers: IAnswer[] = [];
-
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ITest,
-    private userAuthService: UserAuthResourceService,
-    private serverService: TestsResourceService
-    ) {
-      this.test = data;
-    }
+    public dialogRef: MatDialogRef<UserAuthDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ITest) {
+    this.test = data;
+  }
 
   ngOnInit() : void {
-
-    this.onChangeAuthOptions();
-
-    this.changeSelectedValuesLength();
   }
 
-  public onTestSubmit(){
-
-    this.serverService.postTestResultWithId(this.authOptions, this.test.id, this.selectedValues)
-      .subscribe(result => {
-        this.test.result = result;
-
-        this.newCurrentResultEvent.emit(this.test.result);
-      });
+  public submitForm(){
+    this.dialogRef.close(this.selectedValues);
   }
 
-  public onChangeAuthOptions(){
-
-    this.userAuthService.authOptions$
-      .subscribe(options => this.authOptions = options);
-  }
-
-  private changeSelectedValuesLength(){
-    this.selectedValues.length = this.test.questions.length;
+  public ngNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

@@ -1,7 +1,7 @@
 import { IQuestion } from "./IQuestion";
 
 export interface ITest {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   questions: IQuestion[];

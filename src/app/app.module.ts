@@ -15,11 +15,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 
-import { FormsModule } from '@angular/forms';
+import { FormArray, FormsModule, ReactiveFormsModule, FormGroupName } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserAuthComponent } from './user-auth/components/user-auth/user-auth.component';
 import { TestsContainerComponent } from './tests/containers/tests-container/tests-container.component';
-import { PassingTestComponent } from './tests/components/passing-test/passing-test.component';
 import { TestCardComponent } from './tests/containers/test-card/test-card.component';
 import { BlogsContainerComponent } from './blogs/containers/blogs-container/blogs-container.component';
 import { LocalizationComponent } from './main/localization/localization.component';
@@ -28,10 +27,7 @@ import { MainPageModule } from './main/containers/main-page/main-page.module';
 import { MainRoutesComponent } from './navigation/components/main-routes/main-routes.component';
 import { DotnetCertificationComponent } from './blogs/components/dotnet-certification/dotnet-certification.component';
 import { ContactsContainerComponent } from './main/containers/contacts-container/contacts-container.component';
-import { FirstComponent } from './training/first/first.component';
-import { SecondComponent } from './training/second/second.component';
-import { ThirdComponent } from './training/third/third.component';
-import { FourthComponent } from './training/fourth/fourth.component';
+import { AddingTestComponent } from './admin/components/adding/adding-test/adding-test.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +36,6 @@ import { FourthComponent } from './training/fourth/fourth.component';
 
     TestsContainerComponent,
     TestCardComponent,
-    PassingTestComponent,
     BlogsContainerComponent,
     LocalizationComponent,
     BeginnerContainerComponent,
@@ -48,11 +43,7 @@ import { FourthComponent } from './training/fourth/fourth.component';
     BlogsContainerComponent,
     DotnetCertificationComponent,
     ContactsContainerComponent,
-
-    FirstComponent,
-    SecondComponent,
-    ThirdComponent,
-    FourthComponent
+    AddingTestComponent
   ],
   imports: [
     BrowserModule,
@@ -68,10 +59,11 @@ import { FourthComponent } from './training/fourth/fourth.component';
     MatBadgeModule,
     FormsModule,
     MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     MainPageModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

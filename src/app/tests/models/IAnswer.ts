@@ -1,5 +1,5 @@
 export interface IAnswer {
-  id: number;
-  text?: string;
-  questionId: number
+  id?: number;
+  text: string;
+  questionId?: number
 }

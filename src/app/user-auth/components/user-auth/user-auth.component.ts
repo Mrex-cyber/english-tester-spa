@@ -41,7 +41,8 @@ export class UserAuthComponent {
       ).subscribe(userData => {
         this.authService.updateAuthOptions({
           token: userData.token,
-          email: userData.email
+          email: userData.email,
+          isAdmin: userData.isAdmin
         });
       });
     })

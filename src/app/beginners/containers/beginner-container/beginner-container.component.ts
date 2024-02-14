@@ -4,7 +4,7 @@ import { Subject, filter, interval, startWith, switchMap, takeUntil } from 'rxjs
 import { PassingTestComponent } from 'src/app/tests/components/passing-test/passing-test.component';
 import { ITest } from 'src/app/tests/models/ITest';
 import { TestsResourceService } from 'src/app/tests/resources/tests.service';
-import { ITokenWithEmail } from 'src/app/user-auth/models/ITokenWithEmail';
+import { IUserSettings } from 'src/app/user-auth/models/IUserSettings';
 import { UserAuthResourceService } from 'src/app/user-auth/resources/user-auth.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class BeginnerContainerComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe = new Subject<void>();
 
-  private authOptions: ITokenWithEmail = {token: '', email: ''};
+  private authOptions: IUserSettings = {token: '', email: '', isAdmin: false };
 
   constructor(private testsService: TestsResourceService,
     private userAuthService: UserAuthResourceService,
@@ -69,6 +69,8 @@ export class BeginnerContainerComponent implements OnInit, OnDestroy {
       .subscribe(tests => this.tests = tests);
 
   };
+
+  //       <app-passing-test *ngIf="selectedTest" (newCurrentResultEvent)="changeTestResult($event)"></app-passing-test>
 
   public onChangeAuthOptions(){
 

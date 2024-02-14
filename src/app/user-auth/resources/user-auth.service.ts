@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUserCredentials } from '../models/IUserCredentials';
-import { ITokenWithEmail } from '../models/ITokenWithEmail';
+import { IUserSettings } from '../models/IUserSettings';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +10,30 @@ import { ITokenWithEmail } from '../models/ITokenWithEmail';
 export class UserAuthResourceService {
   private testsUrl: string = "http://localhost:5016/api";
 
-  public defaultAuthOptions: ITokenWithEmail = {token: '', email: ''};
+  public defaultAuthOptions: IUserSettings = {token: '', email: '', isAdmin: false};
 
   private httpOptions = {
     headers: new HttpHeaders({"Accept": "application/json", "Content-Type": "application/json"})
   };
 
-  private _authOptions = new BehaviorSubject<ITokenWithEmail>(this.defaultAuthOptions);
+  private _authOptions = new BehaviorSubject<IUserSettings>(this.defaultAuthOptions);
   public authOptions$ = this._authOptions.asObservable();
 
   constructor(private client: HttpClient) { }
 
-  public userSignIn(credentials: IUserCredentials): Observable<ITokenWithEmail> {
+  public userSignIn(credentials: IUserCredentials): Observable<IUserSettings> {
     this.httpOptions.headers = new HttpHeaders({"Accept": "application/json", "Content-Type": "application/json"});
-    return this.client.post<ITokenWithEmail>(this.testsUrl + "/user/signin", {firstName: null, lastName: null, email: credentials.email, password: credentials.password});
+    this.client
+    .post<IUserSettings>(
+      this.testsUrl + "/user/signin", {
+        firstName: null,
+        lastName: null,
+        email: credentials.email,
+        password: credentials.password
+      })
+    .subscribe(result => this.updateAuthOptions(result));
+
+    return this.authOptions$;
   }
 
   public userRegister(credentials: IUserCredentials): Observable<string> {
@@ -37,7 +47,7 @@ export class UserAuthResourceService {
     location.reload();
   }
 
-  public updateAuthOptions(newAuthOptions: ITokenWithEmail) {
+  public updateAuthOptions(newAuthOptions: IUserSettings) {
     this._authOptions.next(newAuthOptions);
   }
 

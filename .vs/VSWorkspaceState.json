@@ -3,12 +3,13 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\services",
-    "\\src\\app\\tests",
-    "\\src\\app\\tests\\components\\passing-test",
-    "\\src\\app\\user-auth",
+    "\\src\\app\\admin",
+    "\\src\\app\\admin\\components",
+    "\\src\\app\\admin\\components\\adding-test",
+    "\\src\\app\\admin\\resources",
+    "\\src\\app\\admin\\services",
     "\\src\\app\\user-auth\\resources"
   ],
-  "SelectedNode": "\\src\\app\\tests\\components",
+  "SelectedNode": "\\src\\app\\admin\\components\\adding-test\\adding-test.component.html",
   "PreviewInSolutionExplorer": false
 }
